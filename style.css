@@ -1,0 +1,212 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f3f3f3;
+    overflow: hidden;
+    direction: rtl;
+}
+
+#text-input-container {
+    width: 60%;
+    max-width: 600px;
+    margin: 2em auto;
+    background: #ffffffdd; /* Semi-transparent white */
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Soft blur effect on the background */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle border */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#user-text-input {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 1em;
+    font-size: 1.1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 2px solid #9E9E9E; /* Lighter border color */
+    border-radius: 8px;
+    padding: 1em;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    resize: none; /* Disable resizing */
+}
+
+#user-text-input:focus {
+    border-color: #6200EE; /* A modern purple focus color */
+    box-shadow: 0 0 0 2px rgba(98, 0, 238, 0.2); /* Glow effect */
+    outline: none;
+}
+
+#start-typing-button {
+    padding: 0.75em 1.5em;
+    font-size: 1.1em;
+    background-color: #6200EE; /* Modern purple background */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#start-typing-button:hover {
+    background-color: #3700B3; /* A darker shade for hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#start-typing-button:active {
+    background-color: #30009C; /* Even darker for active state */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+#random-sentence-button {
+    padding: 0.75em 1.5em;
+    font-size: 1.1em;
+    background-color: #4CAF50; /* Green background for the random sentence button */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#random-sentence-button:hover {
+    background-color: #388E3C; /* Darker shade for hover */
+}
+
+#random-sentence-button:active {
+    background-color: #2E7D32; /* Even darker for active state */
+}
+
+#sentence-count {
+    padding: 0.5em 1.25em;
+    font-size: 1.2em;
+    border: 2px solid #9E9E9E;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out;
+}
+
+#sentence-count:focus {
+    border-color: #6200EE; /* A modern purple focus color */
+    outline: none;
+}
+
+#last-char-container {
+    font-size: 3em; /* Large size for visibility */
+    color: #333; /* Dark color for the character */
+    position: absolute;
+    top: 90%; /* Position it above the typing container */
+    left: 50%;
+    transform: translate(-50%, -100%); /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ensure it's centered regardless of the text width */
+    height: 1em; /* Fixed height to prevent layout shift */
+    overflow: hidden; /* Hide overflow in case of large character */
+    margin-bottom: 20px; /* Space from the typing container */
+}
+
+#typing-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px; /* Increased padding */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Softened shadow */
+    background-color: #fff;
+    border-radius: 15px; /* Rounded corners */
+    font-size: 1.5em; /* Larger text */
+    cursor: text;
+    max-width: 90%; /* Increased max width */
+    max-height: 50%; /* Added max height */
+    overflow: auto; /* Added scroll if text overflows */
+    text-align: right; /* Right align text */
+}
+
+#typed-text, #untyped-text {
+    display: inline;
+    white-space: pre-wrap; /* Preserve whitespaces and line breaks */
+    margin: 0; /* Ensure no margin */
+    padding: 0; /* Ensure no padding */
+}
+
+
+#typed-text {
+    color: #333; /* Darker color for better readability */
+}
+
+#untyped-text {
+    color: #bbb; /* Lighter gray for the untyped text */
+}
+
+.caret {
+    display: inline-block; /* Treat the caret as an inline block */
+    width: 1px; /* Caret width */
+    border: none;
+    color: transparent; /* Caret color */
+    background-color: #333; /* Caret color */
+    animation: blink 1s step-end infinite;
+}
+
+/* Smooth scrolling for a better typing experience */
+#typing-container {
+    scroll-behavior: smooth;
+}
+
+@keyframes blink {
+    50% { background-color: transparent; }
+}
+
+#word-stats {
+    height: 25vh;
+    position: fixed; /* Or absolute, depending on your layout */
+    right: 2%; /* Distance from the right */
+    top: 50%; /* Align vertically */
+    transform: translateY(-50%); /* Center it */
+    background-color: #fff; /* Match the typing container */
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: right; /* Align text to the left */
+    font-size: 1.2em; /* Smaller font size */
+    z-index: 5; /* Make sure it's above other elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    display: none; /* Hide by default */
+}
+
+#word-stats span {
+    font-weight: bold; /* Highlight the numbers */
+}
+
+#restart-typing-button {
+    padding: 1.5em;
+    font-size: 1.1em;
+    background-color: #f44336; /* Red color for the restart button */
+    color: hsl(0, 0%, 100%);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#restart-typing-button:hover {
+    background-color: #d32f2f; /* Darker shade for hover */
+}
+
+#restart-typing-button:active {
+    background-color: #b71c1c; /* Even darker for active state */
+}

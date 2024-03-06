@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אתר הקלדה</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="text-input-container">
+        <textarea id="user-text-input" placeholder="מה תרצה לכתוב?"></textarea>
+        <button id="start-typing-button">התחל להקליד!</button><button id="random-sentence-button">משפט רנדומלי</button>
+    </div>
+    <div id="last-char-container"></div>
+    <div id="word-stats">
+        <div id="total-words">סה״כ מילים: <span id="total-words-count"></span></div>
+        <div id="words-written">מילים שהקלדת: <span id="words-written-count"></span></div>
+        <div id="words-left">מילים שנותרו: <span id="words-left-count"></span></div>
+    </div>    
+    <div id="typing-container" tabindex="0">
+        <span id="typed-text"></span><span class="caret">|</span><span id="untyped-text"></span>
+    </div>    
+    <button id="restart-typing-button" style="display:none;">חזרה</button>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.9.3/tsparticles.confetti.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
